@@ -1,0 +1,27 @@
+{
+  "name": "mobile-pdf-upload-sign",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "prepare": "husky",
+    "test": "npm run test --workspaces",
+    "test:client": "cd client && npm test",
+    "test:server": "cd server && npm test"
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7"
+  },
+  "lint-staged": {
+    "client/**/*.{ts,tsx}": [
+      "npm --prefix client test -- --findRelatedTests --passWithNoTests"
+    ],
+    "server/**/*.js": [
+      "npm --prefix server test -- --findRelatedTests --passWithNoTests"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+# Run all tests before pushing
+echo "Running all tests before push..."
+
+# Run tests
+echo "Running client tests..."
+npm run test:client || exit 1
+
+echo "Running server tests..."
+npm run test:server || exit 1
+
+echo "✅ All tests passed!"
+
+

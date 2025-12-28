@@ -13,3 +13,12 @@ client/dist
 
 # logs
 npm-debug.log*
+
+# test coverage
+coverage
+*.lcov
+client/coverage
+server/coverage
+
+# test temp files
+server/test-temp

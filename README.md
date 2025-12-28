@@ -106,8 +106,9 @@ To test on a mobile device:
 ## Technologies Used
 
 - **Frontend**: React 19, TypeScript, Vite
-- **Backend**: Express.js, Multer (file upload)
+- **Backend**: Node.js, HTTP Server, Busboy (file upload), PDF-lib
 - **Styling**: CSS3 with mobile-responsive design
+- **Testing**: Jest, React Testing Library, Husky (git hooks)
 
 ## API Endpoints
 
@@ -123,6 +124,107 @@ Uploads a PDF file for signing.
 **Response**:
 - Content-Type: `application/pdf`
 - Body: Signed PDF file with a signature stamp added (includes "SIGNED" text, date, and "Mock Server" label)
+
+## Testing
+
+This project uses **Jest** for unit testing and **Husky** for git hooks to ensure code quality.
+
+> 📖 **For detailed testing documentation, see [TESTING.md](./TESTING.md)**
+
+### Running Tests
+
+#### Run All Tests
+
+From the root directory:
+```bash
+npm test
+```
+
+#### Run Client Tests Only
+
+```bash
+cd client
+npm test
+```
+
+Or from root:
+```bash
+npm run test:client
+```
+
+#### Run Server Tests Only
+
+```bash
+cd server
+npm test
+```
+
+Or from root:
+```bash
+npm run test:server
+```
+
+#### Watch Mode
+
+Run tests in watch mode for development:
+```bash
+cd client
+npm run test:watch
+```
+
+#### Coverage Reports
+
+Generate coverage reports:
+```bash
+cd client
+npm run test:coverage
+```
+
+Or for server:
+```bash
+cd server
+npm run test:coverage
+```
+
+### Test Structure
+
+#### Client Tests
+- **Components**: All React components have test files in `__tests__` directories
+- **Utils**: File validation and API utilities are tested
+- **Hooks**: Custom hooks like `usePdfUpload` are tested
+- **Test Location**: `client/src/**/__tests__/**/*.test.tsx`
+
+#### Server Tests
+- **PDF Processing**: Tests for PDF signing and stamping functionality
+- **Server Utilities**: Tests for server-side logic
+- **Test Location**: `server/__tests__/**/*.test.js`
+
+### Git Hooks (Husky)
+
+This project uses **Husky** to run tests automatically before commits:
+
+- **Pre-commit Hook**: Automatically runs tests before allowing commits
+- **Location**: `.husky/pre-commit`
+
+To bypass hooks (not recommended):
+```bash
+git commit --no-verify
+```
+
+### Writing New Tests
+
+When adding new features:
+
+1. **Client**: Create test files in `__tests__` directories next to components
+2. **Server**: Create test files in `server/__tests__/` directory
+3. Follow existing test patterns and naming conventions
+4. Ensure tests pass before committing (Husky will enforce this)
+
+### Test Coverage Goals
+
+- Aim for >80% code coverage
+- Focus on critical business logic and user-facing features
+- Test error handling and edge cases
 
 ## Development
 
@@ -140,8 +242,8 @@ The production build will be in the `client/dist` directory.
 The server runs on port 5000 by default. To change it, modify `server/index.js`:
 
 ```javascript
-app.listen(YOUR_PORT, () => {
-  console.log("Mock server running on port YOUR_PORT");
+server.listen(YOUR_PORT, () => {
+  console.log("Server running on port YOUR_PORT");
 });
 ```
 
